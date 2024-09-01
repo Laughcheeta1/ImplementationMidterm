@@ -1,0 +1,3 @@
+CREATE TABLE Active_Event (
+event_id int PRIMARY KEY REFERENCES Event(id) ON DELETE CASCADE
+)
