@@ -1,4 +1,4 @@
-package com.implementacioneintegracion.Parcial.Person.Entities;
+package com.implementacioneintegracion.Parcial.Person.Entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
