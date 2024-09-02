@@ -14,9 +14,11 @@ public class Role {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Short id;
+
     @Column(name = "name")
     @Size(min = 1, max = 10)
     private String name;
+
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
     private List<Person> persons;
 }
