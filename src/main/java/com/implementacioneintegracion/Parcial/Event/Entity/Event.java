@@ -1,7 +1,6 @@
 package com.implementacioneintegracion.Parcial.Event.Entity;
 
 import com.implementacioneintegracion.Parcial.Ticket.Entity.TicketType;
-import com.implementacioneintegracion.Parcial.Ticket.Entity.TicketTypeCompositeKey;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
