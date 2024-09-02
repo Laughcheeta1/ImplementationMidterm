@@ -12,6 +12,7 @@ public class TicketTypeCompositeKey implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "event_id", referencedColumnName = "id")
     private Event event;
+
     @Column(name = "ticket_type_id")
     private short ticketTypeId;
 }
