@@ -1,4 +1,4 @@
-package com.implementacioneintegracion.Parcial.Event.Entity;
+package com.implementacioneintegracion.Parcial.Event.Entity.MiddleTables.OrganizerEvent;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

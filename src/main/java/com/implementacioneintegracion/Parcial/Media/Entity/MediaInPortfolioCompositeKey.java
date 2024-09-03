@@ -1,4 +1,4 @@
-package com.implementacioneintegracion.Parcial.Portfolio.Entity;
+package com.implementacioneintegracion.Parcial.Media.Entity;
 
 import com.implementacioneintegracion.Parcial.Media.Entity.Media;
 import com.implementacioneintegracion.Parcial.Person.Entity.Person;

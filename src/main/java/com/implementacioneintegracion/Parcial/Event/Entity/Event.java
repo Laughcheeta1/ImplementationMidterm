@@ -1,5 +1,8 @@
 package com.implementacioneintegracion.Parcial.Event.Entity;
 
+import com.implementacioneintegracion.Parcial.Event.Entity.MiddleTables.AttendeeEvent.AttendeeEvent;
+import com.implementacioneintegracion.Parcial.Event.Entity.MiddleTables.OrganizerEvent.OrganizerEvent;
+import com.implementacioneintegracion.Parcial.Event.Entity.MiddleTables.ParticipantEvent.ParticipantEvent;
 import com.implementacioneintegracion.Parcial.Media.Entity.EventMedia;
 import com.implementacioneintegracion.Parcial.Ticket.Entity.TicketType;
 import jakarta.persistence.*;
@@ -37,4 +40,10 @@ public class Event {
 
     @OneToMany(mappedBy = "id.event", fetch = FetchType.LAZY)
     private List<OrganizerEvent> eventOrganizers;
+
+    @OneToMany(mappedBy = "id.event", fetch = FetchType.LAZY)
+    private List<ParticipantEvent> eventParticipants;
+
+//    @OneToMany(mappedBy = "id.event", fetch = FetchType.LAZY)
+//    private List<AttendeeEvent> attendees;
 }

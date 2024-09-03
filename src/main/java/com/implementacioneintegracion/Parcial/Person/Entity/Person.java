@@ -1,6 +1,8 @@
 package com.implementacioneintegracion.Parcial.Person.Entity;
 
-import com.implementacioneintegracion.Parcial.Event.Entity.OrganizerEvent;
+import com.implementacioneintegracion.Parcial.Event.Entity.MiddleTables.AttendeeEvent.AttendeeEvent;
+import com.implementacioneintegracion.Parcial.Event.Entity.MiddleTables.OrganizerEvent.OrganizerEvent;
+import com.implementacioneintegracion.Parcial.Event.Entity.MiddleTables.ParticipantEvent.ParticipantEvent;
 import com.implementacioneintegracion.Parcial.Portfolio.Entity.ParticipantPortfolio;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
@@ -37,4 +39,10 @@ public class Person {
 
     @OneToMany(mappedBy = "id.person", fetch = FetchType.LAZY)
     private List<OrganizerEvent> organizerEvents;
+
+    @OneToMany(mappedBy = "id.person", fetch = FetchType.LAZY)
+    private List<ParticipantEvent> participantEvents;
+
+//    @OneToMany(mappedBy = "id.person", fetch = FetchType.LAZY)
+//    private List<AttendeeEvent> purchasedTickets;
 }

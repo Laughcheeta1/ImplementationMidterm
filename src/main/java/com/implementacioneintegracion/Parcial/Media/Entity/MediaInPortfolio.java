@@ -1,4 +1,4 @@
-package com.implementacioneintegracion.Parcial.Portfolio.Entity;
+package com.implementacioneintegracion.Parcial.Media.Entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
