@@ -10,7 +10,7 @@ import jakarta.validation.constraints.Size;
 @Table(name = "Ticket_Type")
 public class TicketType {
     @Id
-    private TicketTypeCompositeKey ticketTypeCompositeKey;
+    private TicketTypeCompositeKey id;
     @Column(name = "name")
     @Size(min = 1, max = 15)
     private String name;

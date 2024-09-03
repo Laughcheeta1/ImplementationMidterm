@@ -1,8 +1,11 @@
 package com.implementacioneintegracion.Parcial.Category.Entity;
 
+import com.implementacioneintegracion.Parcial.Person.Entity.CategoryParticipant;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Table(name = "Category")
@@ -12,7 +15,11 @@ public class Category {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private short id;
+
     @Column(name = "name")
     @Size(min = 3, max = 15)
     private String name;
+
+    @OneToMany(mappedBy = "id.category", fetch = FetchType.LAZY)
+    private List<CategoryParticipant> categoryParticipants;
 }
