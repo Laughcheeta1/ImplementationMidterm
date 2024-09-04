@@ -10,7 +10,7 @@ import java.io.Serializable;
 @EqualsAndHashCode
 public class TicketTypeCompositeKey implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "event_id", referencedColumnName = "id")
+    @JoinColumn(name = "event_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Event event;
 
     @Column(name = "ticket_type_id")

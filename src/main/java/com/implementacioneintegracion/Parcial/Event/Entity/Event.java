@@ -38,12 +38,12 @@ public class Event {
     @OneToMany(mappedBy = "id.event", fetch = FetchType.LAZY)
     private List<EventMedia> eventMedia;
 
-    @OneToMany(mappedBy = "id.event", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
     private List<OrganizerEvent> eventOrganizers;
 
     @OneToMany(mappedBy = "id.event", fetch = FetchType.LAZY)
     private List<ParticipantEvent> eventParticipants;
 
-//    @OneToMany(mappedBy = "id.event", fetch = FetchType.LAZY)
-//    private List<AttendeeEvent> attendees;
+    @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
+    private List<AttendeeEvent> attendees;
 }

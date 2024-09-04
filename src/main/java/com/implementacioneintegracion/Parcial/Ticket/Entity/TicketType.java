@@ -21,7 +21,7 @@ public class TicketType {
     @Column(name = "number_remaining")
     private int numberRemaining;
 
-//    @OneToMany(mappedBy = "ticketType", fetch = FetchType.LAZY)
-//    private List<AttendeeEvent> ticketBuyers;
+    @OneToMany(mappedBy = "ticketType", fetch = FetchType.LAZY)
+    private List<AttendeeEvent> ticketBuyers;
     // FIXME: have to put a composite foreign key, not a single column. Also have to change this in the database structure.
 }
