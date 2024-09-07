@@ -5,6 +5,7 @@ import com.implementacioneintegracion.Parcial.Event.Entity.MiddleTables.Organize
 import com.implementacioneintegracion.Parcial.Event.Entity.MiddleTables.ParticipantEvent.ParticipantEvent;
 import com.implementacioneintegracion.Parcial.Portfolio.Entity.ParticipantPortfolio;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -21,14 +22,27 @@ public class Person {
 
     @Column(name = "name")
     @Size(min = 1, max = 30)
+    @NotNull
     private String name;
 
     @Column(name = "cellphone")
     @Size(min = 1, max = 10)
+    @NotNull
     private String cellphone;
+
+    @Column(name = "user_name")
+    @Size(min = 1, max = 12)
+    @NotNull
+    private String userName;
+
+    @Column(name = "password")
+    @Size(min = 1, max = 20)
+    @NotNull
+    private String password;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role", referencedColumnName = "id")
+    @NotNull
     private Role role;
 
     @OneToOne(mappedBy = "person", fetch = FetchType.LAZY)

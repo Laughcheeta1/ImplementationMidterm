@@ -27,6 +27,7 @@ public class AttendeeEvent {
     private int ticketNumber;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    // Turns out the @JoinColumn should reference the actual name in the table, not the variable name in the entity
     @JoinColumns(value = {
             @JoinColumn(name = "ticket_type", referencedColumnName = "ticket_type_id", insertable = false, updatable = false),
             @JoinColumn(name = "event_id", referencedColumnName = "event_id", insertable = false, updatable = false)
