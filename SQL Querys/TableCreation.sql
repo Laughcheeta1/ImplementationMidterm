@@ -12,6 +12,8 @@ CREATE TABLE Person (
 	id varchar(10) PRIMARY KEY,
 	name varchar(30),
 	cellphone varchar(10),
+	user_name varchar(12) NOT NULL,
+	password varchar(20) NOT NULL,
 	role smallint references Role(id) ON DELETE SET NULL
 );
 
