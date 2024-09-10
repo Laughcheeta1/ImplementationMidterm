@@ -1,5 +1,6 @@
 package com.implementacioneintegracion.Parcial.Media.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -22,6 +23,7 @@ public class Media {
     @Column(name = "media_type")
     private char media_type;
 
-    @OneToMany(mappedBy = "id.media", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "media", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<EventMedia> mediaEvent;
 }

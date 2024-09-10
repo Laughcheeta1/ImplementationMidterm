@@ -1,8 +1,7 @@
 package com.implementacioneintegracion.Parcial.Person.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.implementacioneintegracion.Parcial.Category.Entity.Category;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -10,5 +9,12 @@ import lombok.Data;
 @Data
 public class CategoryParticipant {
     @Id
-    private CategoryParticipantCompositeKey id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_category", referencedColumnName = "id")
+    private Category category;
+
+    @Id
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_participant", referencedColumnName = "id")
+    private Person person;
 }

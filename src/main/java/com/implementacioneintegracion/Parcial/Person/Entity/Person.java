@@ -1,5 +1,6 @@
 package com.implementacioneintegracion.Parcial.Person.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.implementacioneintegracion.Parcial.Event.Entity.MiddleTables.AttendeeEvent.AttendeeEvent;
 import com.implementacioneintegracion.Parcial.Event.Entity.MiddleTables.OrganizerEvent.OrganizerEvent;
 import com.implementacioneintegracion.Parcial.Event.Entity.MiddleTables.ParticipantEvent.ParticipantEvent;
@@ -8,7 +9,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
 
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -48,15 +51,19 @@ public class Person {
     @OneToOne(mappedBy = "person", fetch = FetchType.LAZY)
     private ParticipantPortfolio participantPortfolio;
 
-    @OneToMany(mappedBy = "id.person", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "person", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<CategoryParticipant> participantCategories;
 
     @OneToMany(mappedBy = "person", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<OrganizerEvent> organizerEvents;
 
     @OneToMany(mappedBy = "id.person", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<ParticipantEvent> participantEvents;
 
     @OneToMany(mappedBy = "person", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<AttendeeEvent> purchasedTickets;
 }

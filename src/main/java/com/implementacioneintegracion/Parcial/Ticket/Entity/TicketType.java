@@ -1,5 +1,6 @@
 package com.implementacioneintegracion.Parcial.Ticket.Entity;
 
+import com.implementacioneintegracion.Parcial.Event.Entity.Event;
 import com.implementacioneintegracion.Parcial.Event.Entity.MiddleTables.AttendeeEvent.AttendeeEvent;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
@@ -10,7 +11,13 @@ import java.util.List;
 @Table(name = "Ticket_Type")
 public class TicketType {
     @Id
-    private TicketTypeCompositeKey id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "event_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Event event;
+
+    @Id
+    @Column(name = "ticket_type_id")
+    private short ticketTypeId;
     @Column(name = "name")
     @Size(min = 1, max = 15)
     private String name;

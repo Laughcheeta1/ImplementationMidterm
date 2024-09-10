@@ -1,5 +1,6 @@
 package com.implementacioneintegracion.Parcial.Portfolio.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.implementacioneintegracion.Parcial.Person.Entity.Person;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
@@ -12,6 +13,7 @@ public class ParticipantPortfolio {
     @Id
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "participant_id", referencedColumnName = "id")
+    @JsonIgnore
     private Person person;
 
     @Column(name = "biography")
