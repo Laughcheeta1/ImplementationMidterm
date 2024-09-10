@@ -1,9 +1,8 @@
 package com.implementacioneintegracion.Parcial.Event.Entity.MiddleTables.ParticipantEvent;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.implementacioneintegracion.Parcial.Event.Entity.Event;
+import com.implementacioneintegracion.Parcial.Person.Entity.Person;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -11,7 +10,14 @@ import lombok.Data;
 @Data
 public class ParticipantEvent {
     @Id
-    private ParticipantEventCompositeKey id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    private Person person;
+
+    @Id
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "event_id", referencedColumnName = "id")
+    private Event event;
 
     @Column(name = "participant_number")
     private int participantNumber;
