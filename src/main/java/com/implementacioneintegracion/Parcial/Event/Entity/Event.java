@@ -8,6 +8,7 @@ import com.implementacioneintegracion.Parcial.Media.Entity.EventMedia.EventMedia
 import com.implementacioneintegracion.Parcial.Ticket.Entity.TicketType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.Date;
