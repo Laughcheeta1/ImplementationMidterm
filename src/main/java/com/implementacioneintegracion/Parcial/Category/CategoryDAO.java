@@ -1,4 +1,4 @@
 package com.implementacioneintegracion.Parcial.Category;
 
-public interface CategoryDatabase {
+public interface CategoryDatabase implements {
 }

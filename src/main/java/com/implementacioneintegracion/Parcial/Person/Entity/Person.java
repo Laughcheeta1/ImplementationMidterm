@@ -59,7 +59,7 @@ public class Person {
     @JsonIgnore
     private List<OrganizerEvent> organizerEvents;
 
-    @OneToMany(mappedBy = "id.person", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "person", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<ParticipantEvent> participantEvents;
 
