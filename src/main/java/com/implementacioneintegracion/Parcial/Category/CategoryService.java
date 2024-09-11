@@ -8,6 +8,8 @@ import java.util.List;
 public interface CategoryService {
     List<Category> getAllCategories();
 
+    void addCategory(Category category);
+
     void deleteCategory(short categoryId);
 
     List<ParticipantResponseDTO> getParticipantsInCategory(short categoryId);
