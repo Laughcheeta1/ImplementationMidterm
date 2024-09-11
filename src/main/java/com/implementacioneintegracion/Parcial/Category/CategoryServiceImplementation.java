@@ -28,6 +28,10 @@ public class CategoryServiceImplementation implements CategoryService {
 
     @Override
     public void addCategory(Category category) {
+        category.setName(category.getName().toLowerCase());
+        if (categoryDAO.existsByName(category.getName()))
+            throw new RuntimeException("This category already exists");  // TODO Create an exception for this
+
         categoryDAO.save(category);
     }
 
@@ -39,15 +43,16 @@ public class CategoryServiceImplementation implements CategoryService {
     @Override
     public List<ParticipantResponseDTO> getParticipantsInCategory(short categoryId) {
         List<Person> participants = categoryDAO.getParticipantsInCategory(categoryId);
+        System.out.println(participants);
 
         return participants.stream().map(
-            participant -> ParticipantResponseDTO.builder()
-                    .id(participant.getId())
-                    .name(participant.getName())
-                    .userName(participant.getUserName())
-                    .categories(
-                            personDao.getCategoryNamesFromParticipant(participant.getId())
-                    ).build()
+                participant -> ParticipantResponseDTO.builder()
+                        .id(participant.getId())
+                        .name(participant.getName())
+                        .userName(participant.getUserName())
+                        .categories(
+                                personDao.getCategoryNamesFromParticipant(participant.getId())
+                        ).build()
         ).toList();
     }
 }
