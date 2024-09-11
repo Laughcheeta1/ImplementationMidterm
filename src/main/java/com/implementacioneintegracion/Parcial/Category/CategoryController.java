@@ -1,8 +1,8 @@
 package com.implementacioneintegracion.Parcial.Category;
 
+import com.implementacioneintegracion.Parcial.Category.DTO.CategoryCreationDTO;
 import com.implementacioneintegracion.Parcial.Category.Entity.Category;
 import com.implementacioneintegracion.Parcial.Person.DTO.ParticipantResponseDTO;
-import com.implementacioneintegracion.Parcial.Person.Entity.Person;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public interface CategoryController {
      * Add a category
      * @param category the category to add
      */
-    ResponseEntity<Void> addCategory(Category category);
+    ResponseEntity<Void> addCategory(CategoryCreationDTO category);
 
     /**
      * Delete a category given the id in the path

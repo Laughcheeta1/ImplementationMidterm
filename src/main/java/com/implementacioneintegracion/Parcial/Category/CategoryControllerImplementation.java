@@ -1,5 +1,6 @@
 package com.implementacioneintegracion.Parcial.Category;
 
+import com.implementacioneintegracion.Parcial.Category.DTO.CategoryCreationDTO;
 import com.implementacioneintegracion.Parcial.Category.Entity.Category;
 import com.implementacioneintegracion.Parcial.Person.DTO.ParticipantResponseDTO;
 import jakarta.validation.Valid;
@@ -32,8 +33,10 @@ public class CategoryControllerImplementation implements CategoryController {
 
     @Override
     @PostMapping("")
-    public ResponseEntity<Void> addCategory(@Valid @RequestBody Category category) {
-        categoryService.addCategory(category);
+    public ResponseEntity<Void> addCategory(@Valid @RequestBody CategoryCreationDTO category) {
+        Category c = new Category();
+        c.setName(category.getName());
+        categoryService.addCategory(c);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
