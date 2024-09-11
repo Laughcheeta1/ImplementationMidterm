@@ -1,4 +1,7 @@
 package com.implementacioneintegracion.Parcial.Category;
 
-public interface CategoryDatabase implements {
+import com.implementacioneintegracion.Parcial.Category.Entity.Category;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CategoryDAO extends JpaRepository<Category, Short> {
 }

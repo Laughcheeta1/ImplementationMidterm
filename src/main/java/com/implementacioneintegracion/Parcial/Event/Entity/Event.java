@@ -33,11 +33,11 @@ public class Event {
     @Size(min = 1, max = 50)
     private String location;
 
-    @OneToMany(mappedBy = "id.event", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<TicketType> ticketTypes;
 
-    @OneToMany(mappedBy = "id.event", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<EventMedia> eventMedia;
 
@@ -45,7 +45,7 @@ public class Event {
     @JsonIgnore
     private List<OrganizerEvent> eventOrganizers;
 
-    @OneToMany(mappedBy = "id.event", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<ParticipantEvent> eventParticipants;
 
