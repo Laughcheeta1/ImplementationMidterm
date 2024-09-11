@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface PersonDao extends JpaRepository<Person, String> {
-    @Query(value = "SELECT category.name FROM CategoryParticipant catPar INNER JOIN catPar.category category WHERE catPar.person = :participantId")
+    @Query(value = "SELECT category.name FROM CategoryParticipant catPar INNER JOIN catPar.id.category category WHERE catPar.id.person = :participantId")
     List<String> getCategoryNamesFromParticipant(String participantId);
 }

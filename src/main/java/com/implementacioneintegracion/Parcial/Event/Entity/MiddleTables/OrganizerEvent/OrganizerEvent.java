@@ -10,12 +10,5 @@ import lombok.Data;
 @Data
 public class OrganizerEvent {
     @Id
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "person_id", referencedColumnName = "id")
-    private Person person;
-
-    @Id
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "event_id", referencedColumnName = "id")
-    private Event event;
+    private OrganizerEventCompositeKey id;
 }

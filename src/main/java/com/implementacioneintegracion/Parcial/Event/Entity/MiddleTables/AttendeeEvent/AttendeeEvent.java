@@ -14,14 +14,7 @@ import org.hibernate.annotations.JoinFormula;
 @Data
 public class AttendeeEvent {
     @Id
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "person_id", referencedColumnName = "id")
-    private Person person;
-
-    @Id
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "EVENT_ID", referencedColumnName = "id")
-    private Event event;
+    private AttendeeEventCompositeKey id;
 
     @Column(name = "ticket_number")
     private int ticketNumber;

@@ -1,19 +1,19 @@
-package com.implementacioneintegracion.Parcial.Person.Entity;
+package com.implementacioneintegracion.Parcial.Person.Entity.CategoryParticipant;
 
 import com.implementacioneintegracion.Parcial.Category.Entity.Category;
+import com.implementacioneintegracion.Parcial.Person.Entity.Person;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-@Entity
-@Table(name = "Category_Participant")
-@Data
-public class CategoryParticipant {
-    @Id
+import java.io.Serializable;
+
+@Embeddable
+@EqualsAndHashCode
+public class CategoryParticipantCompositeKey implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_category", referencedColumnName = "id")
     private Category category;
 
-    @Id
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_participant", referencedColumnName = "id")
     private Person person;

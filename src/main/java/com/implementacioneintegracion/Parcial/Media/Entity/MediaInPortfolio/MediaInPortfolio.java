@@ -1,5 +1,6 @@
-package com.implementacioneintegracion.Parcial.Media.Entity;
+package com.implementacioneintegracion.Parcial.Media.Entity.MediaInPortfolio;
 
+import com.implementacioneintegracion.Parcial.Media.Entity.Media;
 import com.implementacioneintegracion.Parcial.Person.Entity.Person;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -11,14 +12,7 @@ import java.util.Date;
 @Data
 public class MediaInPortfolio {
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "participant_id", referencedColumnName = "id")
-    private Person person;
-
-    @Id
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "media_id", referencedColumnName = "id")
-    private Media media;
+    private MediaInPortfolioCompositeKey id;
 
     @Column(name = "date_of_media")
     @Temporal(TemporalType.DATE)

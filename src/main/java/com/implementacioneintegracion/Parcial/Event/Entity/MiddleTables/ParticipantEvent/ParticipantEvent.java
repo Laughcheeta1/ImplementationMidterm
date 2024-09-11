@@ -10,14 +10,7 @@ import lombok.Data;
 @Data
 public class ParticipantEvent {
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "person_id", referencedColumnName = "id")
-    private Person person;
-
-    @Id
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "event_id", referencedColumnName = "id")
-    private Event event;
+    private ParticipantEventCompositeKey id;
 
     @Column(name = "participant_number")
     private int participantNumber;
