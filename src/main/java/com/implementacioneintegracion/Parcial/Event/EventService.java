@@ -1,4 +1,4 @@
 package com.implementacioneintegracion.Parcial.Event;
 
-public class EventService {
+public interface EventService {
 }
