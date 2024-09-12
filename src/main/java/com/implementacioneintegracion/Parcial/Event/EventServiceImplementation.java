@@ -97,12 +97,13 @@ public class EventServiceImplementation implements EventService {
     }
 
     @Override
-    public void addOrganizers(List<String> organizerId) {
+    public void addOrganizers(int eventId, List<String> organizerId) {
         // Use a @Query, as you see more fit
+
     }
 
     @Override
-    public void deleteOrganizer(String idOrganizer) {
+    public void deleteOrganizer(int eventId, String idOrganizer) {
         eventDAO.deleteOrganizer(idOrganizer);
     }
 
@@ -114,12 +115,12 @@ public class EventServiceImplementation implements EventService {
     }
 
     @Override
-    public void addParticipants(List<String> participantsIds) {
+    public void addParticipants(int eventId, List<String> participantsIds) {
         eventDAO.addParticipants(participantsIds);
     }
 
     @Override
-    public void deleteParticipant(String participantId) {
+    public void deleteParticipant(int eventId, String participantId) {
         eventDAO.deleteParticipant(participantId);
     }
 }

@@ -27,15 +27,15 @@ public interface EventService {
     // Organizers
     List<OrganizerResponseDTO> getOrganizers(int eventId);
 
-    void addOrganizers(List<String> organizerId);
+    void addOrganizers(int eventId, List<String> organizerId);
 
-    void deleteOrganizer(String idOrganizer);
+    void deleteOrganizer(int eventId, String idOrganizer);
 
 
     // Participants
     List<ParticipantResponseDTO> getParticipants(int eventId);
 
-    void addParticipants(List<String> participantsIds);
+    void addParticipants(int eventId, List<String> participantsIds);
 
-    void deleteParticipant(String participantId);
+    void deleteParticipant(int eventId, String participantId);
 }

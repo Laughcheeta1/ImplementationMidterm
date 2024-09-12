@@ -28,15 +28,15 @@ public interface EventController {
     // Organizers
     ResponseEntity<List<OrganizerResponseDTO>> getOrganizers(int id);
 
-    ResponseEntity<Void> addOrganizers(List<String> organizerId);
+    ResponseEntity<Void> addOrganizers(int eventId, List<String> organizerId);
 
-    ResponseEntity<Void> deleteOrganizer(String idOrganizer);
+    ResponseEntity<Void> deleteOrganizer(int eventId, String idOrganizer);
 
 
     // Participants
     ResponseEntity<List<ParticipantResponseDTO>> getParticipants(int id);
 
-    ResponseEntity<Void> addParticipants(List<String> participantsIds);
+    ResponseEntity<Void> addParticipants(int eventId, List<String> participantsIds);
 
-    ResponseEntity<Void> deleteParticipant(String participantId);
+    ResponseEntity<Void> deleteParticipant(int eventId, String participantId);
 }

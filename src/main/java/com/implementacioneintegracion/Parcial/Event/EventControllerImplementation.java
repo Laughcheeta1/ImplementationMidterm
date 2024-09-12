@@ -61,50 +61,50 @@ public class EventControllerImplementation implements EventController {
 
     // Attendees
     @Override
-    @GetMapping("/attendees/{id}")
-    public ResponseEntity<List<AttendeeResponseDTO>> getAttendees(@PathVariable("id") int id) {
+    @GetMapping("{eventId}/attendees")
+    public ResponseEntity<List<AttendeeResponseDTO>> getAttendees(@PathVariable("eventId") int id) {
         return ResponseEntity.ok(eventService.getAttendees(id));
     }
 
     // Organizers
     @Override
-    @GetMapping("/organizers/{id}")
-    public ResponseEntity<List<OrganizerResponseDTO>> getOrganizers(@PathVariable("id") int id) {
+    @GetMapping("/{eventId}/organizers")
+    public ResponseEntity<List<OrganizerResponseDTO>> getOrganizers(@PathVariable("eventId") int id) {
         return ResponseEntity.ok(eventService.getOrganizers(id));
     }
 
     @Override
-    @PostMapping("/organizers")
-    public ResponseEntity<Void> addOrganizers(@RequestBody List<String> organizersIds) {
-        eventService.addOrganizers(organizersIds);
+    @PostMapping("/{eventId}/organizers")
+    public ResponseEntity<Void> addOrganizers(@PathVariable("eventId") int eventId, @RequestBody List<String> organizersIds) {
+        eventService.addOrganizers(eventId, organizersIds);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @Override
-    @DeleteMapping("/organizer/{id}")
-    public ResponseEntity<Void> deleteOrganizer(@PathVariable("id") String idOrganizer) {
-        eventService.deleteOrganizer(idOrganizer);
+    @DeleteMapping("{eventId}/organizer/{id}")
+    public ResponseEntity<Void> deleteOrganizer(@PathVariable("eventId") int eventId, @PathVariable("id") String idOrganizer) {
+        eventService.deleteOrganizer(eventId, idOrganizer);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     // Participants
     @Override
-    @GetMapping("/participants/{id}")
-    public ResponseEntity<List<ParticipantResponseDTO>> getParticipants(@PathVariable("id") int id) {
+    @GetMapping("{eventId}/participants")
+    public ResponseEntity<List<ParticipantResponseDTO>> getParticipants(@PathVariable("eventId") int id) {
         return ResponseEntity.ok(eventService.getParticipants(id));
     }
 
     @Override
-    @PostMapping("/participants")
-    public ResponseEntity<Void> addParticipants(@RequestBody List<String> participantsIds) {
-        eventService.addParticipants(participantsIds);
+    @PostMapping("{eventId}/participants")
+    public ResponseEntity<Void> addParticipants(@PathVariable("eventId") int eventId, @RequestBody List<String> participantsIds) {
+        eventService.addParticipants(eventId, participantsIds);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @Override
-    @DeleteMapping("/participant/{id}")
-    public ResponseEntity<Void> deleteParticipant(@PathVariable("id") String participantId) {
-        eventService.deleteParticipant(participantId);
+    @DeleteMapping("{eventId}/participant/{id}")
+    public ResponseEntity<Void> deleteParticipant(@PathVariable("eventId") int eventId, @PathVariable("id") String participantId) {
+        eventService.deleteParticipant(eventId, participantId);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
