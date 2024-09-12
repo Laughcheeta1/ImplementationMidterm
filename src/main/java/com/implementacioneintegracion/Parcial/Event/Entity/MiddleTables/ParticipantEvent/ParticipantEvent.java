@@ -13,6 +13,5 @@ public class ParticipantEvent {
     private ParticipantEventCompositeKey id;
 
     @Column(name = "participant_number")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // TODO Change this in the database
     private int participantNumber;
 }
