@@ -1,14 +1,19 @@
 package com.implementacioneintegracion.Parcial.Event;
 
-import com.implementacioneintegracion.Parcial.Category.CategoryDAO;
 import com.implementacioneintegracion.Parcial.Event.DTO.EventCreationDTO;
 import com.implementacioneintegracion.Parcial.Event.DTO.EventUpdateDTO;
 import com.implementacioneintegracion.Parcial.Event.Entity.Event;
-import com.implementacioneintegracion.Parcial.Event.EventService;
+import com.implementacioneintegracion.Parcial.Event.Entity.MiddleTables.OrganizerEvent.OrganizerEvent;
+import com.implementacioneintegracion.Parcial.Event.Entity.MiddleTables.OrganizerEvent.OrganizerEventCompositeKey;
+import com.implementacioneintegracion.Parcial.Event.Entity.MiddleTables.OrganizerEvent.OrganizerEventDAO;
+import com.implementacioneintegracion.Parcial.Event.Entity.MiddleTables.ParticipantEvent.ParticipantEvent;
+import com.implementacioneintegracion.Parcial.Event.Entity.MiddleTables.ParticipantEvent.ParticipantEventCompositeKey;
+import com.implementacioneintegracion.Parcial.Event.Entity.MiddleTables.ParticipantEvent.ParticipantEventDAO;
 import com.implementacioneintegracion.Parcial.Person.DTO.AttendeeResponseDTO;
 import com.implementacioneintegracion.Parcial.Person.DTO.OrganizerResponseDTO;
 import com.implementacioneintegracion.Parcial.Person.DTO.ParticipantResponseDTO;
 import com.implementacioneintegracion.Parcial.Person.Entity.Person;
+import com.implementacioneintegracion.Parcial.Person.PersonDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +22,16 @@ import java.util.List;
 @Service
 public class EventServiceImplementation implements EventService {
     private final EventDAO eventDAO;
+    private final PersonDao personDao;
+    private final OrganizerEventDAO organizerEventDAO;
+    private final ParticipantEventDAO participantEventDAO;
 
     @Autowired
-    public EventServiceImplementation(EventDAO eventDAO) {
+    public EventServiceImplementation(EventDAO eventDAO, PersonDao personDao, OrganizerEventDAO organizerEventDAO, ParticipantEventDAO participantEventDAO) {
         this.eventDAO = eventDAO;
+        this.personDao = personDao;
+        this.organizerEventDAO = organizerEventDAO;
+        this.participantEventDAO = participantEventDAO;
     }
 
     @Override
@@ -98,29 +109,89 @@ public class EventServiceImplementation implements EventService {
 
     @Override
     public void addOrganizers(int eventId, List<String> organizerId) {
-        // Use a @Query, as you see more fit
+        // TODO  changes this exceptions
+        Event event = eventDAO.findById(eventId).orElseThrow(() -> new RuntimeException("event not found"));
 
+        List<OrganizerEvent> organizers = organizerId.stream().map(id -> {
+            Person org = personDao.findById(id).orElseThrow(() -> new RuntimeException("The organizer has not been found"));
+
+            OrganizerEventCompositeKey orgEventComp = new OrganizerEventCompositeKey();
+            orgEventComp.setEvent(event);
+            orgEventComp.setPerson(org);
+
+            OrganizerEvent orgEvent = new OrganizerEvent();
+            orgEvent.setId(orgEventComp);
+
+            return orgEvent;
+        }).toList();
+
+        organizerEventDAO.saveAll(organizers);
     }
 
     @Override
     public void deleteOrganizer(int eventId, String idOrganizer) {
-        eventDAO.deleteOrganizer(idOrganizer);
+        // TODO
+        Event event = eventDAO.findById(eventId).orElseThrow(() -> new RuntimeException("Couldn't find event"));
+        // TODO
+        Person organizer = personDao.findById(idOrganizer).orElseThrow(() -> new RuntimeException("Couldn't find organizer"));
+
+        OrganizerEventCompositeKey orgEventComp = new OrganizerEventCompositeKey();
+        orgEventComp.setPerson(organizer);
+        orgEventComp.setEvent(event);
+
+        organizerEventDAO.deleteById(orgEventComp);
     }
 
 
     // Participants
     @Override
     public List<ParticipantResponseDTO> getParticipants(int eventId) {
-        return eventDAO.getEventParticipants(eventId);
+        Event event = eventDAO.findById(eventId).orElseThrow(() -> new RuntimeException("Event not found"));  // TODO change exception
+
+        return event.getEventParticipants().stream().map(participantEvent -> {
+                    Person p = participantEvent.getId().getPerson();
+                    return ParticipantResponseDTO.builder()
+                            .id(p.getId())
+                            .name(p.getName())
+                            .userName(p.getUserName())
+                            .categories(personDao.getCategoryNamesFromParticipant(p.getId()))
+                            .build();
+                }
+        ).toList();
     }
 
     @Override
     public void addParticipants(int eventId, List<String> participantsIds) {
-        eventDAO.addParticipants(participantsIds);
+        // TODO  changes this exceptions
+        Event event = eventDAO.findById(eventId).orElseThrow(() -> new RuntimeException("event not found"));
+
+        List<ParticipantEvent> organizers = participantsIds.stream().map(id -> {
+            Person org = personDao.findById(id).orElseThrow(() -> new RuntimeException("The participant has not been found"));
+
+            ParticipantEventCompositeKey partEventComp = new ParticipantEventCompositeKey();
+            partEventComp.setEvent(event);
+            partEventComp.setPerson(org);
+
+            ParticipantEvent partEvent = new ParticipantEvent();
+            partEvent.setId(partEventComp);
+
+            return partEvent;
+        }).toList();
+
+        participantEventDAO.saveAll(organizers);
     }
 
     @Override
     public void deleteParticipant(int eventId, String participantId) {
-        eventDAO.deleteParticipant(participantId);
+        // TODO
+        Event event = eventDAO.findById(eventId).orElseThrow(() -> new RuntimeException("Couldn't find event"));
+        // TODO
+        Person participant = personDao.findById(participantId).orElseThrow(() -> new RuntimeException("Couldn't find participant"));
+
+        ParticipantEventCompositeKey partEventComp = new ParticipantEventCompositeKey();
+        partEventComp.setPerson(participant);
+        partEventComp.setEvent(event);
+
+        participantEventDAO.deleteById(partEventComp);
     }
 }
