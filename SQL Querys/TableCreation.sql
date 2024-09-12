@@ -28,7 +28,8 @@ CREATE TABLE Event (
 	id int GENERATED ALWAYS AS IDENTITY (INCREMENT 1 START 1) PRIMARY KEY,
 	name varchar(30),
 	date_time timestamptz,
-	location varchar(50)
+	location varchar(50),
+	active boolean DEFAULT TRUE
 );
 
 CREATE TABLE Ticket_Type (
@@ -91,8 +92,4 @@ CREATE TABLE Attendee_Event (
 	ticket_type smallint,
 	FOREIGN KEY (event_id, ticket_type) REFERENCES Ticket_Type(event_id, ticket_type_id) ON DELETE RESTRICT,
 	PRIMARY KEY (person_id, event_id)
-);
-
-CREATE TABLE Active_Event (
-event_id int PRIMARY KEY REFERENCES Event(id) ON DELETE CASCADE
 );

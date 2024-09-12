@@ -34,6 +34,9 @@ public class Event {
     @Size(min = 1, max = 50)
     private String location;
 
+    @Column(name = "active")
+    private boolean active;
+
     @OneToMany(mappedBy = "id.event", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<TicketType> ticketTypes;
