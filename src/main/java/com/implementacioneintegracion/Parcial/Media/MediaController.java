@@ -1,20 +1,20 @@
 package com.implementacioneintegracion.Parcial.Media;
 
-import com.implementacioneintegracion.Parcial.Media.DTO.MediaDTO;
+import com.implementacioneintegracion.Parcial.Media.Entity.Media;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 public interface MediaController {
-    ResponseEntity<List<MediaDTO>> getAllMedia();
+    ResponseEntity<List<Media>> getAllMedia();
 
     // Event Media
-    ResponseEntity<List<MediaDTO>> getEventMedia(int eventId);
-    ResponseEntity<Void> addMediaEvent(int eventId, MediaDTO media);
-    ResponseEntity<Void> deleteMediaEvent(int eventId, MediaDTO media);
+    ResponseEntity<List<Media>> getEventMedia(int eventId);
+    ResponseEntity<Void> addMediaEvent(int eventId, Media media);
+    ResponseEntity<Void> deleteMediaEvent(int eventId, long mediaID);
 
     // Participant Media
-    ResponseEntity<List<MediaDTO>> getParticipantMedia(int participantId);
-    ResponseEntity<Void> addMediaParticipant(int participantId, MediaDTO media);
-    ResponseEntity<Void> deleteMediaParticipant(int participantId, MediaDTO media);
+    ResponseEntity<List<Media>> getParticipantMedia(int participantId);
+    ResponseEntity<Void> addMediaParticipant(int participantId, Media media);
+    ResponseEntity<Void> deleteMediaParticipant(int participantId, long mediaId);
 }

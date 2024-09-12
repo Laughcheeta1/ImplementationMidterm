@@ -22,7 +22,7 @@ public class Media {
     private String url;
 
     @Column(name = "media_type")
-    private char media_type;
+    private char mediaType;
 
     @OneToMany(mappedBy = "id.media", fetch = FetchType.LAZY)
     @JsonIgnore
