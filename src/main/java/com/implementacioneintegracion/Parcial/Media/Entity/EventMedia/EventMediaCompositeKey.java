@@ -3,12 +3,14 @@ package com.implementacioneintegracion.Parcial.Media.Entity.EventMedia;
 import com.implementacioneintegracion.Parcial.Event.Entity.Event;
 import com.implementacioneintegracion.Parcial.Media.Entity.Media;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 
 @Embeddable
 @EqualsAndHashCode
+@Data
 public class EventMediaCompositeKey implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "event", referencedColumnName = "id")

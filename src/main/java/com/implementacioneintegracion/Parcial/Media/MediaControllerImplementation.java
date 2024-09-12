@@ -1,5 +1,11 @@
 package com.implementacioneintegracion.Parcial.Media;
 
+import com.implementacioneintegracion.Parcial.Event.Entity.Event;
+import com.implementacioneintegracion.Parcial.Event.EventDAO;
+import com.implementacioneintegracion.Parcial.Media.DTO.MediaEventCreationDTO;
+import com.implementacioneintegracion.Parcial.Media.DTO.MediaModelCreationDTO;
+import com.implementacioneintegracion.Parcial.Media.Entity.EventMedia.EventMedia;
+import com.implementacioneintegracion.Parcial.Media.Entity.EventMedia.EventMediaCompositeKey;
 import com.implementacioneintegracion.Parcial.Media.Entity.Media;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +16,7 @@ import java.util.List;
 
 @RestController
 public class MediaControllerImplementation implements MediaController {
-    private MediaService mediaService;
+    private final MediaService mediaService;
 
     @Autowired
     public MediaControllerImplementation(MediaService mediaService) {
@@ -28,34 +34,31 @@ public class MediaControllerImplementation implements MediaController {
     }
 
     @Override
-    public ResponseEntity<Void> addMediaEvent(int eventId, Media media) {
-        Media m = new Media();
-        m.setUrl(media.getUrl());
-        m.setMediaType(media.getMediaType());
-
-        mediaService.addMediaEvent(eventId, m);
+    public ResponseEntity<Void> addMediaEvent(int eventId, MediaEventCreationDTO media) {
+        mediaService.addMediaEvent(eventId, media);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @Override
     public ResponseEntity<Void> deleteMediaEvent(int eventId, long mediaId) {
-
-
+        mediaService.deleteMediaEvent(eventId, mediaId);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @Override
     public ResponseEntity<List<Media>> getParticipantMedia(int participantId) {
-        return null;
+        return ResponseEntity.ok(mediaService.getParticipantMedia(participantId));
     }
 
     @Override
-    public ResponseEntity<Void> addMediaParticipant(int participantId, Media media) {
-        return null;
+    public ResponseEntity<Void> addMediaModel(int participantId, MediaModelCreationDTO media) {
+        mediaService.addMediaParticipant(participantId, media);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @Override
     public ResponseEntity<Void> deleteMediaParticipant(int participantId, long mediaId) {
-        return null;
+        mediaService.deleteMediaParticipant(participantId, mediaId);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
