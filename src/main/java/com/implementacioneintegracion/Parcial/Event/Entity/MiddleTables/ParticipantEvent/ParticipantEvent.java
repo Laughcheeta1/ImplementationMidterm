@@ -1,7 +1,5 @@
 package com.implementacioneintegracion.Parcial.Event.Entity.MiddleTables.ParticipantEvent;
 
-import com.implementacioneintegracion.Parcial.Event.Entity.Event;
-import com.implementacioneintegracion.Parcial.Person.Entity.Person;
 import jakarta.persistence.*;
 import lombok.Data;
 

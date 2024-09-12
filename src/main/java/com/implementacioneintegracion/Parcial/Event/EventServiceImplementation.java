@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class EventServiceImplementation implements EventService {
@@ -165,6 +166,8 @@ public class EventServiceImplementation implements EventService {
         // TODO  changes this exceptions
         Event event = eventDAO.findById(eventId).orElseThrow(() -> new RuntimeException("event not found"));
 
+        AtomicInteger counter = new AtomicInteger(participantEventDAO.countById_Event(event) + 1);
+
         List<ParticipantEvent> organizers = participantsIds.stream().map(id -> {
             Person org = personDao.findById(id).orElseThrow(() -> new RuntimeException("The participant has not been found"));
 
@@ -174,6 +177,8 @@ public class EventServiceImplementation implements EventService {
 
             ParticipantEvent partEvent = new ParticipantEvent();
             partEvent.setId(partEventComp);
+            partEvent.setParticipantNumber(counter.get());
+            counter.getAndIncrement();
 
             return partEvent;
         }).toList();
