@@ -13,7 +13,7 @@ import com.implementacioneintegracion.Parcial.Person.DTO.AttendeeResponseDTO;
 import com.implementacioneintegracion.Parcial.Person.DTO.OrganizerResponseDTO;
 import com.implementacioneintegracion.Parcial.Person.DTO.ParticipantResponseDTO;
 import com.implementacioneintegracion.Parcial.Person.Entity.Person;
-import com.implementacioneintegracion.Parcial.Person.PersonDao;
+import com.implementacioneintegracion.Parcial.Person.PersonDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,12 +23,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Service
 public class EventServiceImplementation implements EventService {
     private final EventDAO eventDAO;
-    private final PersonDao personDao;
+    private final PersonDAO personDao;
     private final OrganizerEventDAO organizerEventDAO;
     private final ParticipantEventDAO participantEventDAO;
 
     @Autowired
-    public EventServiceImplementation(EventDAO eventDAO, PersonDao personDao, OrganizerEventDAO organizerEventDAO, ParticipantEventDAO participantEventDAO) {
+    public EventServiceImplementation(EventDAO eventDAO, PersonDAO personDao, OrganizerEventDAO organizerEventDAO, ParticipantEventDAO participantEventDAO) {
         this.eventDAO = eventDAO;
         this.personDao = personDao;
         this.organizerEventDAO = organizerEventDAO;

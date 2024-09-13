@@ -3,7 +3,7 @@ package com.implementacioneintegracion.Parcial.Category;
 import com.implementacioneintegracion.Parcial.Category.Entity.Category;
 import com.implementacioneintegracion.Parcial.Person.DTO.ParticipantResponseDTO;
 import com.implementacioneintegracion.Parcial.Person.Entity.Person;
-import com.implementacioneintegracion.Parcial.Person.PersonDao;
+import com.implementacioneintegracion.Parcial.Person.PersonDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +12,10 @@ import java.util.List;
 @Service
 public class CategoryServiceImplementation implements CategoryService {
     private final CategoryDAO categoryDAO;
-    private final PersonDao personDao;
+    private final PersonDAO personDao;
 
     @Autowired
-    public CategoryServiceImplementation(CategoryDAO categoryDAO, PersonDao personDao) {
+    public CategoryServiceImplementation(CategoryDAO categoryDAO, PersonDAO personDao) {
         this.categoryDAO = categoryDAO;
         this.personDao = personDao;
     }
