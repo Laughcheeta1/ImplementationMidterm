@@ -1,11 +1,13 @@
 package com.implementacioneintegracion.Parcial.Media;
 
+import com.implementacioneintegracion.Parcial.Event.Entity.Event;
 import com.implementacioneintegracion.Parcial.Event.EventDAO;
 import com.implementacioneintegracion.Parcial.Media.DTO.MediaEventCreationDTO;
 import com.implementacioneintegracion.Parcial.Media.DTO.MediaEventResponseDTO;
 import com.implementacioneintegracion.Parcial.Media.DTO.MediaModelCreationDTO;
 import com.implementacioneintegracion.Parcial.Media.DTO.MediaModelResponseDTO;
 import com.implementacioneintegracion.Parcial.Media.Entity.EventMedia.EventMedia;
+import com.implementacioneintegracion.Parcial.Media.Entity.EventMedia.EventMediaCompositeKey;
 import com.implementacioneintegracion.Parcial.Media.Entity.EventMedia.EventMediaDAO;
 import com.implementacioneintegracion.Parcial.Media.Entity.Media;
 import com.implementacioneintegracion.Parcial.Media.Entity.MediaInPortfolio.MediaInPortfolioDAO;
@@ -55,7 +57,24 @@ public class MediaServiceImplementation implements MediaService {
 
     @Override
     public void addEventMedia(int eventId, MediaEventCreationDTO media) {
+        // TODO
+        Event event = eventDAO.findById(eventId).orElseThrow(() -> new RuntimeException("Event not found"));
+        Media med = new Media();
+        med.setUrl(media.getUrl());
+        med.setMediaType(media.getMediaType());
 
+        EventMediaCompositeKey key = new EventMediaCompositeKey();
+        key.setEvent(event);
+        key.setMedia(med);
+
+        EventMedia eventMedia = new EventMedia();
+        eventMedia.setId(key);
+        eventMedia.setPartOfShow(media.getPartOfShow());
+        eventMedia.setHighlighted(media.isHighlighted());
+
+        // Save the media
+        mediaDAO.save(med);
+        eventMediaDAO.save(eventMedia);
     }
 
     @Override
