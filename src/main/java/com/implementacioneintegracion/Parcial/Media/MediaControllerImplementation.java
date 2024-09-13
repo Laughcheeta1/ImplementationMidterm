@@ -44,18 +44,18 @@ public class MediaControllerImplementation implements MediaController {
     }
 
     @Override
-    public ResponseEntity<List<MediaModelResponseDTO>> getModelMedia(int modelId) {
+    public ResponseEntity<List<MediaModelResponseDTO>> getModelMedia(String modelId) {
         return ResponseEntity.ok(mediaService.getModelMedia(modelId));
     }
 
     @Override
-    public ResponseEntity<Void> addModelMedia(int modelId, MediaModelCreationDTO media) {
+    public ResponseEntity<Void> addModelMedia(String modelId, MediaModelCreationDTO media) {
         mediaService.addModelMedia(modelId, media);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @Override
-    public ResponseEntity<Void> deleteModelMedia(int modelId, long mediaId) {
+    public ResponseEntity<Void> deleteModelMedia(String modelId, long mediaId) {
         mediaService.deleteModelMedia(modelId, mediaId);
         return ResponseEntity.status(HttpStatus.OK).build();
     }

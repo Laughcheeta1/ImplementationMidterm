@@ -6,9 +6,9 @@ import java.util.Date;
 
 @Builder
 public class MediaModelResponseDTO {
-    private int mediaId;
-    private Date date;
-    private String description;
+    private Long mediaId;
     private String url;
     private char mediaType;
+    private Date date;
+    private String description;
 }

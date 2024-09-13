@@ -17,7 +17,7 @@ public interface MediaService {
     void deleteEventMedia(int eventId, long mediaId);
 
     // Participant Media
-    List<MediaModelResponseDTO> getModelMedia(int model);
-    void addModelMedia(int modelId, MediaModelCreationDTO media);
-    void deleteModelMedia(int modelId, long mediaId);
+    List<MediaModelResponseDTO> getModelMedia(String model);
+    void addModelMedia(String modelId, MediaModelCreationDTO media);
+    void deleteModelMedia(String modelId, long mediaId);
 }

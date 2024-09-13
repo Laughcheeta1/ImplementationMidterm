@@ -10,6 +10,7 @@ import com.implementacioneintegracion.Parcial.Media.Entity.EventMedia.EventMedia
 import com.implementacioneintegracion.Parcial.Media.Entity.EventMedia.EventMediaCompositeKey;
 import com.implementacioneintegracion.Parcial.Media.Entity.EventMedia.EventMediaDAO;
 import com.implementacioneintegracion.Parcial.Media.Entity.Media;
+import com.implementacioneintegracion.Parcial.Media.Entity.MediaInPortfolio.MediaInPortfolio;
 import com.implementacioneintegracion.Parcial.Media.Entity.MediaInPortfolio.MediaInPortfolioDAO;
 import com.implementacioneintegracion.Parcial.Person.PersonDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class MediaServiceImplementation implements MediaService {
 
     @Override
     public List<MediaEventResponseDTO> getEventMedia(int eventId) {
-        List<EventMedia> eventMedia = eventMediaDAO.findById_Event(eventId);
+        List<EventMedia> eventMedia = eventMediaDAO.findById_Event_Id(eventId);
 
         return eventMedia.stream().map(e -> {
             Media media = e.getId().getMedia();
@@ -92,17 +93,28 @@ public class MediaServiceImplementation implements MediaService {
     }
 
     @Override
-    public List<MediaModelResponseDTO> getModelMedia(int modelId) {
-        return null;
+    public List<MediaModelResponseDTO> getModelMedia(String modelId) {
+        List<MediaInPortfolio> modelMedia = mediaInPortfolioDAO.findById_Person_Id(modelId);
+
+        return modelMedia.stream().map(e -> {
+            Media media = e.getId().getMedia();
+            return MediaModelResponseDTO.builder()
+                    .mediaId(media.getId())
+                    .url(media.getUrl())
+                    .mediaType(media.getMediaType())
+                    .date(e.getDateOfMedia())
+                    .description(e.getDescription())
+                    .build();
+        }).toList();
     }
 
     @Override
-    public void addModelMedia(int modelId, MediaModelCreationDTO media) {
+    public void addModelMedia(String modelId, MediaModelCreationDTO media) {
 
     }
 
     @Override
-    public void deleteModelMedia(int modelId, long mediaId) {
+    public void deleteModelMedia(String modelId, long mediaId) {
 
     }
 }
