@@ -18,7 +18,7 @@ public interface MediaController {
     ResponseEntity<Void> deleteEventMedia(int eventId, long mediaID);
 
     // Participant Media
-    ResponseEntity<List<MediaModelResponseDTO>> getModelMedia(int participantId);
+    ResponseEntity<List<MediaModelResponseDTO>> getModelMedia(int modelId);
     ResponseEntity<Void> addModelMedia(int modelId, MediaModelCreationDTO media);
-    ResponseEntity<Void> deleteModelMedia(int participantId, long mediaId);
+    ResponseEntity<Void> deleteModelMedia(int modelId, long mediaId);
 }

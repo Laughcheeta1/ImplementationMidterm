@@ -92,17 +92,17 @@ public class MediaServiceImplementation implements MediaService {
     }
 
     @Override
-    public List<MediaModelResponseDTO> getModelMedia(int participantId) {
+    public List<MediaModelResponseDTO> getModelMedia(int modelId) {
         return null;
     }
 
     @Override
-    public void addModelMedia(int participantId, MediaModelCreationDTO media) {
+    public void addModelMedia(int modelId, MediaModelCreationDTO media) {
 
     }
 
     @Override
-    public void deleteModelMedia(int participantId, long mediaId) {
+    public void deleteModelMedia(int modelId, long mediaId) {
 
     }
 }
