@@ -11,7 +11,9 @@ import com.implementacioneintegracion.Parcial.Media.Entity.EventMedia.EventMedia
 import com.implementacioneintegracion.Parcial.Media.Entity.EventMedia.EventMediaDAO;
 import com.implementacioneintegracion.Parcial.Media.Entity.Media;
 import com.implementacioneintegracion.Parcial.Media.Entity.MediaInPortfolio.MediaInPortfolio;
+import com.implementacioneintegracion.Parcial.Media.Entity.MediaInPortfolio.MediaInPortfolioCompositeKey;
 import com.implementacioneintegracion.Parcial.Media.Entity.MediaInPortfolio.MediaInPortfolioDAO;
+import com.implementacioneintegracion.Parcial.Person.Entity.Person;
 import com.implementacioneintegracion.Parcial.Person.PersonDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -110,7 +112,24 @@ public class MediaServiceImplementation implements MediaService {
 
     @Override
     public void addModelMedia(String modelId, MediaModelCreationDTO media) {
+        // TODO
+        Person model = personDAO.findById(modelId).orElseThrow(() -> new RuntimeException("Model not found"));
+        Media med = new Media();
+        med.setUrl(media.getUrl());
+        med.setMediaType(media.getMediaType());
 
+        MediaInPortfolioCompositeKey key = new MediaInPortfolioCompositeKey();
+        key.setPerson(model);
+        key.setMedia(med);
+
+        MediaInPortfolio modelMedia = new MediaInPortfolio();
+        modelMedia.setId(key);
+        modelMedia.setDateOfMedia(media.getDate());
+        modelMedia.setDescription(media.getDescription());
+
+        // Save the media
+        mediaDAO.save(med);
+        mediaInPortfolioDAO.save(modelMedia);
     }
 
     @Override

@@ -5,12 +5,14 @@ import com.implementacioneintegracion.Parcial.Person.Entity.Person;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 
 @Embeddable
 @EqualsAndHashCode
 @Getter
+@Setter
 public class MediaInPortfolioCompositeKey implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "participant_id", referencedColumnName = "id")
