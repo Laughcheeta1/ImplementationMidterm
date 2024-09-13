@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface MediaDAO extends JpaRepository<Media, Integer> {
+public interface MediaDAO extends JpaRepository<Media, Long> {
 }

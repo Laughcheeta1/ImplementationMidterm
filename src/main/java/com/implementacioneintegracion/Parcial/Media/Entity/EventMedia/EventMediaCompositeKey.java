@@ -3,6 +3,7 @@ package com.implementacioneintegracion.Parcial.Media.Entity.EventMedia;
 import com.implementacioneintegracion.Parcial.Event.Entity.Event;
 import com.implementacioneintegracion.Parcial.Media.Entity.Media;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;

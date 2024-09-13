@@ -79,7 +79,16 @@ public class MediaServiceImplementation implements MediaService {
 
     @Override
     public void deleteEventMedia(int eventId, long mediaId) {
+        // TODO
+        Event event = eventDAO.findById(eventId).orElseThrow(() -> new RuntimeException("Event not found"));
+        Media media = mediaDAO.findById(mediaId).orElseThrow(() -> new RuntimeException("Media not found"));
 
+        EventMediaCompositeKey key = new EventMediaCompositeKey();
+        key.setEvent(event);
+        key.setMedia(media);
+
+        eventMediaDAO.deleteById(key);
+        mediaDAO.delete(media);
     }
 
     @Override
