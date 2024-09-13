@@ -5,6 +5,7 @@ import com.implementacioneintegracion.Parcial.Media.DTO.MediaEventCreationDTO;
 import com.implementacioneintegracion.Parcial.Media.DTO.MediaEventResponseDTO;
 import com.implementacioneintegracion.Parcial.Media.DTO.MediaModelCreationDTO;
 import com.implementacioneintegracion.Parcial.Media.DTO.MediaModelResponseDTO;
+import com.implementacioneintegracion.Parcial.Media.Entity.EventMedia.EventMedia;
 import com.implementacioneintegracion.Parcial.Media.Entity.EventMedia.EventMediaDAO;
 import com.implementacioneintegracion.Parcial.Media.Entity.Media;
 import com.implementacioneintegracion.Parcial.Media.Entity.MediaInPortfolio.MediaInPortfolioDAO;
@@ -38,7 +39,18 @@ public class MediaServiceImplementation implements MediaService {
 
     @Override
     public List<MediaEventResponseDTO> getEventMedia(int eventId) {
-        return null;
+        List<EventMedia> eventMedia = eventMediaDAO.findById_Event(eventId);
+
+        return eventMedia.stream().map(e -> {
+            Media media = e.getId().getMedia();
+            return MediaEventResponseDTO.builder()
+                    .mediaId(media.getId())
+                    .url(media.getUrl())
+                    .mediaType(media.getMediaType())
+                    .partOfShow(e.getPartOfShow())
+                    .highlighted(e.isHighlighted())
+                    .build();
+        }).toList();
     }
 
     @Override
